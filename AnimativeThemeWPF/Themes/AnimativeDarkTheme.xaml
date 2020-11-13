@@ -142,7 +142,6 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ControlMouseOverBorderBrush}"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="Background" TargetName="border" Value="{StaticResource ControlMouseOverBackground}"/>
                             <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource ControlMouseOverBorderBrush}"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="true">
@@ -162,22 +161,29 @@
             <EventTrigger RoutedEvent="Button.MouseEnter">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation From="{StaticResource ControlDefaultBackgroundColour}"
-                                        To="{StaticResource ControlMouseOverBackgroundColour}"
+                        <ColorAnimation To="{StaticResource ControlMouseOverBackgroundColour}"
                                         Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
-                                        FillBehavior="Stop"
-                                        Duration="0:0:0.2"/>
+                                        FillBehavior="HoldEnd"
+                                        Duration="0:0:0.1"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
             <EventTrigger RoutedEvent="Button.MouseLeave">
                 <BeginStoryboard>
                     <Storyboard>
-                        <ColorAnimation From="{StaticResource ControlMouseOverBackgroundColour}"
-                                        To="{StaticResource ControlDefaultBackgroundColour}"
-                                        FillBehavior="Stop"
+                        <ColorAnimation To="{StaticResource ControlDefaultBackgroundColour}"
                                         Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
-                                        Duration="0:0:0.2"/>
+                                        Duration="0:0:0.1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Button.Click">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <ColorAnimation To="{StaticResource ControlSelectedBackgroundColour}"
+                                        Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" 
+                                        AutoReverse="True"
+                                        Duration="0:0:0.01"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
